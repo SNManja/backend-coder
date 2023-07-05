@@ -1,6 +1,7 @@
 
 
 class ProductManager {
+    static id = 0;
     constructor() {
         this.products = [];
     }
@@ -10,7 +11,10 @@ class ProductManager {
             return ProductManager.id;
     }
     addProduct(product) {
-        this.products.push(product);
+        this.products.push({
+            id: this.getID(),
+            ...product,
+        })
     }
     getProducts() {
         return this.products;
@@ -23,19 +27,13 @@ class ProductManager {
 class Product { 
     // El contador de productos lo queremos global. No?
     // En caso contrario lo puedo poner en ProductManager y que el id del producto cambie dependiendo de cada manager, pero me parecia mas apropiado la id de los productos en productos
-    static id = 0;
-    constructor(title, price, thumbnailURL, code, stock) {
+    
+    constructor(title, price, thumbnailURL, stock) {
         this.title = title;
         this.price = price;
         this.thumbnail = thumbnailURL;
-        this.code = code
-        this.id = this.getID()
         this.stock = stock;
     }
-    getID() {
-        Product.id++;
-        return Product.id;
-}
     
 }
 /*
