@@ -3,7 +3,6 @@ import fs from "fs";
 
 class ProductManager {
     #path
-    #products
 
     static id = 0;
     constructor(path) {
@@ -45,7 +44,7 @@ class ProductManager {
     async writeFile(productList) {
         try {
             await fs.promises.writeFile(this.#path, JSON.stringify(productList))
-            console.log("file written", productList)
+            console.log("file written")
             
         } catch {
             console.error("Error writing file")
@@ -68,7 +67,7 @@ class ProductManager {
         try {
 
             let checkProducts = await this.readFile()
-            this.#products = checkProducts
+            this.products = checkProducts
             return checkProducts
         } catch (e) {
             console.log("getProducts error: ", e)
@@ -77,8 +76,8 @@ class ProductManager {
     }
 
     getID() {
-        // No checkeo en el archivo porque esto lo uso solo cuando agrego un productos y eso actualiza antes this.#products
-        while (this.getProductById(ProductManager.id, this.#products) !== "Not found"){
+        // No checkeo en el archivo porque esto lo uso solo cuando agrego un productos y eso actualiza antes this.products
+        while (this.getProductById(ProductManager.id, this.products) !== "Not found"){
             ProductManager.id++;
         }
         return ProductManager.id;
@@ -88,11 +87,11 @@ class ProductManager {
         try{
             if (product instanceof Product){
 
-                this.#products = await this.getProducts()
+                this.products = await this.getProducts()
                 let id = this.getID()
-                this.#products.push({id,...product});
+                this.products.push({id,...product});
 
-                await this.writeFile(this.#products);
+                await this.writeFile(this.products);
 
             } else {
                 console.log("not a product")
@@ -122,7 +121,7 @@ class ProductManager {
         let listaProducto = await this.getProducts();
 
         listaProducto = listaProducto.filter(elem => elem.id != id);
-        this.#products = listaProducto // Esta bien esto?
+        this.products = listaProducto // Esta bien esto?
         this.writeFile(listaProducto);
         return listaProducto;
     }
