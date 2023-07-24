@@ -43,6 +43,7 @@ class ProductManager {
 
     async writeFile(productList) {
         try {
+            console.log("this will be written:",productList);
             await fs.promises.writeFile(this.#path, JSON.stringify(productList))
             console.log("file written")
             
@@ -75,9 +76,9 @@ class ProductManager {
         }
     }
 
-    getID() {
+    async getID() {
         // No checkeo en el archivo porque esto lo uso solo cuando agrego un productos y eso actualiza antes this.products
-        while (this.getProductById(ProductManager.id, this.products) !== "Not found"){
+        while (await this.getProductById(ProductManager.id, this.products) !== "Not found"){
             ProductManager.id++;
         }
         return ProductManager.id;
@@ -87,9 +88,9 @@ class ProductManager {
         try{
             if (product instanceof Product){
 
-                this.products = await this.getProducts()
-                let id = this.getID()
-                this.products.push({id,...product});
+                await this.getProducts()
+                let id = await this.getID()
+                this.products.push({...product, id});
 
                 await this.writeFile(this.products);
 
@@ -102,14 +103,12 @@ class ProductManager {
         }
     }
 
-    getProductById(id, file = false) {
-        // Tener en cuenta que el segundo valor es para pasar la lista del archivo
+    async getProductById(id) {
+        
         let productList;
-        if (file) {
-            productList = file;
-        } else {
-            productList = this.products;
-        }
+
+        productList = await this.getProducts();
+
         let product = productList.find(product => product.id === id);
         return product ? product : "Not found";
 
@@ -133,12 +132,16 @@ class ProductManager {
             const product = await this.getProductById(id);
             const allProducts = await this.getProducts();
 
+            if ( product == "Not found") {
+                throw new Error('Product not found');
+            }
+
             const filtrado = allProducts.filter( elem => elem.id != product.id ) // Saco el elemento
 
             const changed = {
-                id: id,
                 ...product,
                 ...campo, 
+                id: id 
             }
 
             filtrado.push(changed)       
@@ -146,19 +149,22 @@ class ProductManager {
 
             return changed
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 };
 
 
 class Product {
-    constructor(title, price, thumbnailURL, stock, code) {
+    constructor(title, desc, code, price, stock, category, thumbnails) {
         this.title = title;
+        this.desc = desc;
         this.price = price;
-        this.thumbnail = thumbnailURL;
+        this.status = true;
         this.stock = stock;
         this.code = code;
+        this.category = category;
+        this.thumbnails = thumbnails;
     }
 };
 
