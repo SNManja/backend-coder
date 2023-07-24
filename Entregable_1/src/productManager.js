@@ -156,6 +156,7 @@ class ProductManager {
 
 
 class Product {
+    
     constructor(title, desc, code, price, stock, category, thumbnails) {
         this.title = title;
         this.desc = desc;
@@ -164,7 +165,21 @@ class Product {
         this.stock = stock;
         this.code = code;
         this.category = category;
-        this.thumbnails = thumbnails;
+        this.thumbnails = this.#initThumb(thumbnails)
+    }
+
+    #initThumb(tn) {
+        return tn
+        // Esto lo hice para almacenar solo la direccion de almanamiento. Es mejor esto o el objeto completo con toda la data?
+        // Puedo directamente devolver tn si eso es valido
+        /*
+        let thumblist = []
+
+        tn.forEach((e)=>{
+            thumblist.push(e.path)
+        })
+        return thumblist
+        */
     }
 };
 
