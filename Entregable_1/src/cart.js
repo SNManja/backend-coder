@@ -43,10 +43,10 @@ class CartManager {
 
     }
 
-    async writeFile(productList) {
+    async writeFile(cartList) {
         try {
-            console.log("this will be written:",productList);
-            await fs.promises.writeFile(this.#path, JSON.stringify(productList))
+            console.log("this will be written:",cartList);
+            await fs.promises.writeFile(this.#path, JSON.stringify(cartList))
             console.log("file written")
             
         } catch {
