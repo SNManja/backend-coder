@@ -95,7 +95,7 @@ class Cart {
     static #cartId = 0;
     #list
     #id
-    constructor(fileName){
+    constructor(){
         this.#id = this.#createCartId()
         this.#list = [];  
     }
