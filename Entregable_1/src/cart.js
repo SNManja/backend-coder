@@ -101,7 +101,7 @@ class Cart {
     }
 
     getCart(){
-        return 
+        return this.#list
     }
 
     #createCartId(){
