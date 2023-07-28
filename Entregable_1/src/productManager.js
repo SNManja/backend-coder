@@ -5,9 +5,9 @@ class ProductManager {
     #path
 
     static id = 0;
-    constructor(path) {
+    constructor(fileName) {
         this.products = [];
-        this.#path = path;
+        this.#path =   "./src/productLists" + fileName;
         this._initializePath();
     }
 
