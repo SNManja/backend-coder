@@ -21,6 +21,7 @@ router.get("/", async function (req, res) {
         }
 
         res.send(prodList)
+        
 
     } catch (err){
         console.error(err)

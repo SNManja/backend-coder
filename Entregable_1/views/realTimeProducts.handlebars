@@ -1,0 +1,18 @@
+{{! 
+    Vive en el endpoint /realtimeproducts
+    En nuestro views router
+
+    Contendra la misma lista de productos, pero trbaajando con websockets
+    Entonces cada vez que hay un nuevo producto o uno eliminado se actualiza automaticamente
+
+    Como la conexion entre HTTP y websocket no esta contemplada
+    se recomiendo que para la creacion y eliminacion
+    de un producto, se cree un formulario simple en la vista
+    realTimeProducts.handlebars
+    para qu el contenido se envie desde websockets y no HTTP.
+    Sin embargo esta no es la mejor solucion
+
+    Si se desea hacer la conexion de socket emits con HTTP deberas buscar la
+    forma de utilizar el servidor io de sockets dentro de la peticion POST
+    Como utilizaras un emit dentro de POST?
+}}
