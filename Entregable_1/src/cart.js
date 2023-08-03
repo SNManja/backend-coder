@@ -2,14 +2,15 @@ import fs from "fs";
 
 class CartManager {
     #path
-    #list
+    static cartId = 1
     constructor(fileName){
-        this.#list = []
+        this.list = []
         this.#path = "./src/Carts/"+ fileName
         this._initializePath();
     }
 
     
+
     async _initializePath() {
         let p = this.#path.split("/")
 
@@ -17,8 +18,7 @@ class CartManager {
 
         p = p.join("/")
 
-
-        await fs.mkdir(p, { recursive: true }, (err) => {
+        fs.mkdir(p, { recursive: true }, (err) => {
             if(err){
                 console.error("Error creating directory", err)
 
@@ -32,21 +32,20 @@ class CartManager {
         try {
             await fs.promises.access(this.#path, fs.constants.F_OK);
             console.log("File exists");
-            await this.getCart()
+            await this.getCartList()
             exists = true;
         } catch (err) {
             console.log("File does not exist");
             await fs.promises.writeFile(this.#path, "");
         }
-
         if (!exists) await fs.promises.writeFile(this.#path, "")
-
+        
     }
 
-    async writeFile(cartList) {
+    async writeFile(cartMan) {
         try {
-            console.log("this will be written:",cartList);
-            await fs.promises.writeFile(this.#path, JSON.stringify(cartList))
+            console.log("this will be written:",cartMan);
+            await fs.promises.writeFile(this.#path, JSON.stringify(cartMan))
             console.log("file written")
             
         } catch {
@@ -67,19 +66,26 @@ class CartManager {
     }
 
     async getCartList (){
-        this.#list = await this.readFile()
-        return this.#list
+        this.list = await this.readFile()
+        return this.list
     }
 
-    getCartById(id){
-        return this.#list.find((cart)=> parseInt(cart.getCartId()) == parseInt(id) )
+    async getCartById(id) {
+        
+        let res = this.list.find((cart) => parseInt(cart.id) === parseInt(id));
+    
+        return res  != undefined ? res : false
+
     }
 
-    addCart (cart){
+    async addCart (cart){
         try{
+            await this.getCartList();
             if ( cart instanceof Cart ){
-                this.#list.push(cart) 
-                this.writeFile()
+                let id = await this.getCartId()
+                this.list.push( { ...cart , id: id } ) 
+                await this.writeFile(this.list)
+                return id
             } else {
                 throw new Error("Not a cart");
             }
@@ -87,41 +93,47 @@ class CartManager {
             console.error(err)
         }
     }
+
+    async getCartId() {
+        try {
+            
+
+            let nextId = CartManager.cartId;
+           
+            while ( await this.getCartById(nextId) != false ) {
+                
+                nextId++;
+            }
+            
+            return nextId;
+        } catch (err) {
+            console.log("couldnt get id");
+            console.error(err);
+        }
+    }
 }
 
 
 class Cart {
 
-    static #cartId = 0;
-    #list
-    #id
+
     constructor(){
-        this.#id = this.#createCartId()
-        this.#list = [];  
+        this.list = [];  
     }
 
     getCart(){
-        return this.#list
-    }
-
-    #createCartId(){
-        Cart.#cartId++
-        return Cart.#cartId;
-    }
-
-    getCartId(){
-        return this.#id;
+        return this.list
     }
 
     countProducts(id){
-        return this.#list.reduce((count, prodId )=> {
+        return this.list.reduce((count, prodId )=> {
             return prodId == id ? count+1 : count;
         }, 0)
     }
 
     addProduct (prodId){
         try{
-            this.#list.push( prodId ) 
+            this.list.push( prodId ) 
 
  
         } catch (err) { 

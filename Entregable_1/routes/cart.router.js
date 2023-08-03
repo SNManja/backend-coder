@@ -6,22 +6,22 @@ const router = Router()
 let cartList = new CartManager ("cart.json")
 
  
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     try{
         let carrito = new Cart ()
 
-        cartList.addCart(carrito)
+        let id = await cartList.addCart(carrito)
 
-        res.send("Cart "+ carrito.getCartId() +" created")
+        res.send("Cart "+ cartList.getCartId(id) +" created")
     } catch (err){
         console.error(err)
     }
 })
 
-router.get("/:cid", (req, res) => {
+router.get("/:cid", async (req, res) => {
     try {
         console.log(req.params.cid)
-        let cart = cartList.getCart(parseInt(req.params.cid)) 
+        let cart = await cartList.getCartById(parseInt(req.params.cid)) 
         if(!cart){ throw new Error("Cart not found")}
         console.log("Cart found", cart )
         res.status(200).send(cart)
@@ -31,14 +31,21 @@ router.get("/:cid", (req, res) => {
     }
 })
 
-router.post("/:cid/product/:pid/", (req, res) => {
+router.post("/:cid/product/:pid/", async (req, res) => {
     try {
         let cid = parseInt(req.params.cid)
         let pid = parseInt(req.params.pid)
-        let cart = cartList.getCart(cid)
         
-        cart.addProduct(pid)
-
+        await cartList.getCartList()
+       
+        let ind = cartList.list.findIndex((cart) => cart.id === cid)
+        
+        console.log(ind)
+        console.log("AAAAAS",cartList["list"][ind]["list"])
+        cartList["list"][ind]["list"].push(pid)
+        
+        await cartList.writeFile(cartList["list"])
+        
         res.status(200).send( `Cart id-${cid} contains Prod id-${pid} ${cart.countProducts(pid)} times`)
     } catch (err){
         res.status(400).send("Trouble adding product into cart")

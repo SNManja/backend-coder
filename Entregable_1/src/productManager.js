@@ -1,6 +1,7 @@
 
 import fs from "fs";
 
+
 class ProductManager {
     #path
 
@@ -69,6 +70,7 @@ class ProductManager {
 
             let checkProducts = await this.readFile()
             this.products = checkProducts
+
             return checkProducts
         } catch (e) {
             console.log("getProducts error: ", e)
@@ -93,6 +95,8 @@ class ProductManager {
                 this.products.push({...product, id});
 
                 await this.writeFile(this.products);
+
+                
 
             } else {
                 console.log("not a product")
@@ -122,6 +126,7 @@ class ProductManager {
         listaProducto = listaProducto.filter(elem => elem.id != id);
         this.products = listaProducto // Esta bien esto?
         this.writeFile(listaProducto);
+        
         return listaProducto;
     }
 
@@ -146,7 +151,7 @@ class ProductManager {
 
             filtrado.push(changed)       
             await this.writeFile(filtrado)
-
+            
             return changed
         } catch (err) {
             console.error(err)

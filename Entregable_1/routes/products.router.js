@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { Product, ProductManager } from "../src/productManager.js";
+import { manager, socketServer } from "../src/app.js";
+import { Product } from "../src/productManager.js";
 import { uploader } from "../src/utils.js";
 
 
-let prodManPath = "/products.json"
-let manager = new ProductManager(prodManPath)
+
 
 
 const router = Router()
@@ -19,10 +19,9 @@ router.get("/", async function (req, res) {
         while (prodList.length != num && prodList.length && num) {
             prodList.pop()
         }
-
+        
         res.send(prodList)
         
-
     } catch (err){
         console.error(err)
         res.status(500).json({error: "Products not found"})
@@ -50,12 +49,14 @@ router.post("/", uploader.array("thumbnails"), async(req,res)=>{
         prod = new Product(prodJSON.title, prodJSON.desc, prodJSON.code, prodJSON.price, prodJSON.stock, prodJSON.category, req.files)
         await manager.addProduct(prod)
         console.log("product: ",prod)
+        socketServer.emit("reloadProd", await manager.getProducts());
         res.status(200).send("Product created successfully")
     } catch (err){
         console.log("err: ",err.message)
         res.status(400).send("Not able to create product")
         
     }
+    
     
 })
 
@@ -66,8 +67,9 @@ router.put("/:pid", async (req, res) => {
         if ( !campo ){
             throw new Error('Nothing to update');
         }
-
         await manager.updateProduct(parseInt(req.params.pid), campo  )
+        socketServer.emit("reloadProd", await manager.getProducts());
+
         res.status(200).send("Product updated successfully"+ String( await manager.getProductById(req.params.pid) ) )
     } catch (err){
         res.status(400).send("Error updating product: ", err)
@@ -77,12 +79,15 @@ router.put("/:pid", async (req, res) => {
 router.delete("/:pid", async (req, res) => {
     try {
         await manager.deleteProduct(parseInt(req.params.pid))
+        socketServer.emit("reloadProd", await manager.getProducts());
         res.status(200).send("Product deleted successfully")
     } catch {
         res.status(400).send("Error deleting product: ", err)
     }
     
 })
+
+
 
 
 export default router;

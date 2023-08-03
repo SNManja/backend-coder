@@ -1,8 +1,22 @@
 <div>
-    <h1>Ejemplo, test funcionamiento</h1>
+    <h1>Lista de productos</h1>
+    <div>
+    {{#each pList}}
+        <div>
+            <br>
+            <p>Product {{this.id }} </p>
+            <p> - Title: {{ this.title }} </p>
+            <p> - desc: {{ this.desc }} </p>
+            <p> - price: {{ this.price }} </p>
+            <p> - status: {{ this.status }} </p>
+            <p> - stock: {{ this.stock }} </p>
+            <p> - code: {{ this.code }}</p>
+            <br>
+        </div>
+    {{/each}}
+    </div>
 </div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/index.js"></script>
+
 
 
 {{!
