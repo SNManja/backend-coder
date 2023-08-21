@@ -1,54 +1,62 @@
 
-
 import express from "express";
 import handlebars from "express-handlebars";
+import mongoose from "mongoose";
 import { Server } from "socket.io";
-import cartRouter from "../routes/cart.router.js";
-import { default as productsRouter } from "../routes/products.router.js";
-import { ProductManager } from "../src/productManager.js";
+import { ProductManager } from "./dao/Filesystem/productManager.js";
+import ProductManagerDB from "./dao/Mongo/productManagerDB.js";
+import cartRouter from "./routes/cart.router.js";
+import { default as productsRouter } from "./routes/products.router.js";
 import { __dirname } from "./utils.js";
 
 
 let prodManPath = "/products.json"
 
-let manager = new ProductManager(prodManPath)
 
-function getProdsFromPath(path){
-    return manager.getProducts()
-}
+
+let manager = new ProductManagerDB()
+let maneager = new ProductManager(prodManPath)
+
 
 let PORT = 8080
 
 const app = express()
 
 
+
 // Middleware para el req.query
-app.use(express.static('public', { 
-    extensions: ['html', 'js'], // Specify the file extensions to serve
-    mimeTypes: {
-      'html': 'text/html',
-      'js': 'text/javascript', // Make sure to include the correct MIME type for JS files
-    },
-}));
+app.use("/public", express.static("public"));
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
 app.engine("handlebars", handlebars.engine())
-app.set("views", __dirname+"/../views")
+app.set("views", __dirname+"/views")
 app.set("view engine", "handlebars")
 
-app.use("/api/products",productsRouter)
-app.use("/api/cart",cartRouter)
 
 
 app.get("/", async (req,res)=> {
-    let prodList = await getProdsFromPath(prodManPath);
-    console.log(prodList)
+    let OGprodList = await manager.getProducts()
+    
+    let prodList = []
 
-    res.render("home",  {
-        pList: prodList,
-    } )
+
+    // Esto es horrendo, pero fue la unica solucion a un conflicto con handlebars que encontre. No me permitia pasar directamente los valores que llegaban de la database por un tema de seguridad
+    OGprodList.forEach((prod) =>{
+        let newProd = {}
+        newProd.title = prod.title
+        newProd.desc= prod.desc
+        newProd.price = prod.price
+        newProd.status = prod.status
+        newProd.stock = prod.stock
+        newProd.code = prod.code
+        prodList.push(newProd)
+    })
+
+
+    console.log(prodList)
+    res.render("home",  {prodList} )
 })
 
 
@@ -69,13 +77,30 @@ socketServer.on("connection", async (socket) => {
 })
 
 
- 
 socketServer.on("connection", async (value)=>{
     console.log("query prods")
-    socketServer.emit("reloadProd", await manager.getProducts());
+    let products = await manager.getProducts()
+
+ 
+    socketServer.emit("reloadProd",  products );
 })
 
 
+const initialDBConnection = async () => {
+    try {
+        await mongoose.connect("mongodb+srv://santiagomanjarin111:hola12345@backendcoder.13dqh4u.mongodb.net/")
+
+        console.log("db connected")
+    } catch ( err ) {
+        console.log( err )
+    }
+}
+
+initialDBConnection()
+
+
+app.use("/api/products",productsRouter)
+app.use("/api/cart",cartRouter)
 
 export { manager, prodManPath, socketServer };
 
