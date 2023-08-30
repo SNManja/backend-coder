@@ -121,6 +121,8 @@ class CartManager {
         
         await cartList.writeFile(cartList["list"])
     }
+
+
 }
 
 

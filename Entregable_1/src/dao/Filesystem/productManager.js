@@ -65,7 +65,7 @@ class ProductManager {
         return JSON.parse(file);
     }
 
-    async getProducts() {
+    async getProducts(query = {}) {
         try {
 
             let checkProducts = await this.readFile()
@@ -157,6 +157,7 @@ class ProductManager {
             console.error(err)
         }
     }
+    
 };
 
 

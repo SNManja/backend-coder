@@ -14,10 +14,13 @@ async function socketEmitter(){
 // main /api/products page
 router.get("/", async function (req, res) {
     try {
-        let prodList = await manager.getProducts()
-        let num = parseInt(req.query.limit)
+       
+        let prodList = await manager.getProducts(req.query)
+        let limit = parseInt(req.query.limit)
+        
+
     
-        while (prodList.length != num && prodList.length && num) {
+        while (prodList.length != limit && prodList.length && limit) {
             prodList.pop()
         }
       

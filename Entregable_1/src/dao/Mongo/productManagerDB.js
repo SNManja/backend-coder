@@ -1,17 +1,40 @@
 
-import { productModel } from "./models/product.model.js"
+import { productModel } from "./models/product.model.js";
+
 
 class ProductManagerDB {
 
-    async readFile() {
-        return await productModel.find()
-    }
-
-    async getProducts() {
+    async getProducts(thisquery = {}) {
         try {
+            const find = {}
+            if (thisquery.query){
+                find["title"] = thisquery.query
+            }
+           
+            if( thisquery.page || thisquery.limit){
+               
+                const options = {
+        
+                    page: parseInt(thisquery.page) || 1 ,    // 1 by default
+                    limit: parseInt(thisquery.limit) || 10, // 10 by default
+                    sort: {price: parseInt(thisquery.sort)} 
+                }
+                
+                let checkProducts = await productModel.paginate(find, options)
+                
+                console.log(checkProducts);
+                return checkProducts["docs"]
 
-            let checkProducts = await this.readFile()
-            return checkProducts
+
+            } else {
+                let checkProducts = await productModel.find(find)
+                if (thisquery.sort){
+                    checkProducts = checkProducts.sort({price: parseInt(thisquery.sort)})
+                }
+                return checkProducts
+            }
+            
+            
         } catch (e) {
             console.log("getProducts error: ", e)
             return []
