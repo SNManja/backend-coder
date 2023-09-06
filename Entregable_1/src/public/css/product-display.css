@@ -4,6 +4,11 @@
     
 }
 
+#logout-button {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+}
 
 h1 {
     text-align: center;

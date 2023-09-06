@@ -83,9 +83,9 @@ router.put("/:cid", async (req, res)=> {
    
 })
 
-router.put(":cid/products/:pid", async (req, res) => {
+router.put("/:cid/products/:pid", async (req, res) => {
     // modifica la cantidad de ejemplares del producto. Osea stock
-    console.log("PORQUE NO PASA POR ACAAAAAAAAAAAAAAAAAAAAA")
+
     let cid = req.params.cid
     let pid = req.params.pid
     let quant = req.body.quantity
@@ -99,7 +99,7 @@ router.put(":cid/products/:pid", async (req, res) => {
 
 })
 
-router.delete(":cid", async (req, res) => {
+router.delete("/:cid", async (req, res) => {
     try {
 
         let cid = req.params.cid

@@ -1,12 +1,16 @@
 
+import MongoStore from "connect-mongo";
 import express from "express";
 import handlebars from "express-handlebars";
+import session from "express-session";
 import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { ProductManager } from "./dao/Filesystem/productManager.js";
 import ProductManagerDB from "./dao/Mongo/productManagerDB.js";
 import cartRouter from "./routes/cart.router.js";
 import { default as productsRouter } from "./routes/products.router.js";
+import sessionsRouter from "./routes/sessions.router.js";
+import userViewsRouter from "./routes/user.views.router.js";
 import { __dirname } from "./utils.js";
 
 
@@ -19,20 +23,31 @@ let maneager = new ProductManager(prodManPath)
 
 
 let PORT = 8080
+const MONGO_URL ="mongodb+srv://santiagomanjarin111:WoU9DelakFw8w4Z2@ecommerce.9wfuip9.mongodb.net/ecommerce"
 
 const app = express()
-
-
 
 // Middleware para el req.query
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(session({
+    
+    store: MongoStore.create({
+        mongoUrl: MONGO_URL,
+        mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+        ttl: 10 * 60 // 10 minutes
+    }),
+    secret: "bingchilling",
+    resave: false, //guarda en memoria
+    saveUninitialized: true, //lo guarda a penas se crea
+}))
 
 
 app.engine("handlebars", handlebars.engine())
 app.set("views", __dirname+"/views")
 app.set("view engine", "handlebars")
+
 
 
 
@@ -86,9 +101,10 @@ socketServer.on("connection", async (value)=>{
 })
 
 
+
 const initialDBConnection = async () => {
     try {
-        await mongoose.connect("mongodb+srv://santiagomanjarin111:hola12345@backendcoder.13dqh4u.mongodb.net/")
+        await mongoose.connect(MONGO_URL)
 
         console.log("db connected")
     } catch ( err ) {
@@ -99,8 +115,12 @@ const initialDBConnection = async () => {
 initialDBConnection()
 
 
+
+
 app.use("/api/products",productsRouter)
 app.use("/api/cart",cartRouter)
+app.use("/api/sessions",sessionsRouter)
+app.use("/users",userViewsRouter); 
 
 export { manager, prodManPath, socketServer };
 

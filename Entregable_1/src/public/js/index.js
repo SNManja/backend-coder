@@ -1,9 +1,23 @@
-// Config socket lado cliente
 
-// WoU9DelakFw8w4Z2
+
 productsDiv = document.getElementById("product-div");
 const socket = io();
 
+let logoutButton = document.getElementById("logout-button");
+
+logoutButton.addEventListener("click", (e)=>{
+    fetch("/api/sessions/logout",{
+        method: "DELETE",
+        body: "",
+        headers:{ 
+            "Content-type": "application/json"
+        }
+    }).then(result=>{
+        if(result.satus == 200){
+            window.location.replace("/users/login")
+        }
+    })
+})
 
 socket.on("reloadProd", (prodList)=> {
     console.log("prodList", prodList)
