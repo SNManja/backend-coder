@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import multer from "multer";
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -18,4 +19,10 @@ const storage = multer.diskStorage({
 })
 
 export const uploader = multer({storage})
+
+// bcrypt
+
+export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+export const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password)
 

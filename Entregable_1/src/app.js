@@ -4,16 +4,17 @@ import express from "express";
 import handlebars from "express-handlebars";
 import session from "express-session";
 import mongoose from "mongoose";
+import passport from "passport";
 import { Server } from "socket.io";
+import initPassport from './config/passport.config.js';
 import { ProductManager } from "./dao/Filesystem/productManager.js";
 import ProductManagerDB from "./dao/Mongo/productManagerDB.js";
 import cartRouter from "./routes/cart.router.js";
+import githubLoginViewsRouter from "./routes/github-login.views.router.js";
 import { default as productsRouter } from "./routes/products.router.js";
 import sessionsRouter from "./routes/sessions.router.js";
 import userViewsRouter from "./routes/user.views.router.js";
 import { __dirname } from "./utils.js";
-
-
 let prodManPath = "/products.json"
 
 
@@ -26,6 +27,12 @@ let PORT = 8080
 const MONGO_URL ="mongodb+srv://santiagomanjarin111:WoU9DelakFw8w4Z2@ecommerce.9wfuip9.mongodb.net/ecommerce"
 
 const app = express()
+
+
+//Passport middleware
+initPassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware para el req.query
 app.use(express.static(__dirname + '/public'))
@@ -121,6 +128,8 @@ app.use("/api/products",productsRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/sessions",sessionsRouter)
 app.use("/users",userViewsRouter); 
+app.use("/github",githubLoginViewsRouter); 
+
 
 export { manager, prodManPath, socketServer };
 
