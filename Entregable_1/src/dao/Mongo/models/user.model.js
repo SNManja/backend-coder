@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     age: Number,
     password: String, 
     role: String,
+    cart: String,
 })
 
 export const userModel = mongoose.model("users", userSchema)

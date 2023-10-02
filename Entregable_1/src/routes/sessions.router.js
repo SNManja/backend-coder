@@ -29,22 +29,23 @@ router.post("/register", passport.authenticate("register"),async(req,res) =>{
 // Si tengo que hacer el redirect se lo agrego a authenticate como segundo
 // param: {failureRedirect: "/failLogin"}
 router.post("/login", passport.authenticate("login"),async (req, res) =>{
-    if (!req.user) return res.status(400).send({status: "error", error: "Invalid credentials"} )
+    if(!req.user) return res.status(400).json({ status: 'error', msg: 'Invalid credentials'})
+
     req.session.user = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        age: user.age,
-        role: user.role
-    } 
+        firstName:  req.user.first_name,
+        lastName:   req.user.last_name,
+        age:        req.user.age,
+        email:      req.user.email,
+        
+    }
     res.send({status: "success", payload: req.user})
    
 })
 
 router.delete("/logout", async (req, res) => {
-    console.log("loging out")
+    console.log("logging out")
     req.session.destroy();
-    res.send({ status: 200, payload: req.session.user, message: "User log'd out successfully" });
+    res.send({ status: 200,  message: "User log'd out successfully" });
 })
 
 export default router;
