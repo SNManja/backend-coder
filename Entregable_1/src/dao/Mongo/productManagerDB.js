@@ -86,5 +86,5 @@ class ProductManagerDB {
 
 
 
-export default ProductManagerDB 
+export { ProductManagerDB };
 

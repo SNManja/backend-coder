@@ -21,7 +21,12 @@ export default class MongoSingleton {
     #connectToMongo() {
         async () => {
             try {
-                await mongoose.connect(config.MONGO_URL)
+                await mongoose.connect(config.MONGO_URL, {
+                    userNewUrlParser: true, 
+                    useUnifiedTopology: true,
+                    // Cambia nivel de escritura a 1. Menos seguro pero mas rapido!
+                    w: 1
+                })
                 console.log("db connected")
             } catch ( err ) {
                 console.log( err )

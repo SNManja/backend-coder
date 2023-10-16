@@ -1,3 +1,4 @@
+
 import { cartsModel } from "./models/carts.model.js";
 
 
@@ -151,10 +152,6 @@ class CartManagerDB {
         }
     }
 }
-
-
-
-
 
 export { CartManagerDB };
 

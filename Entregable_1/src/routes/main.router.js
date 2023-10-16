@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { Server } from "socket.io";
-import { manager } from "../app.js";
 import config from "../config/config.js";
+import { productService } from "../services/factory.js";
 
 const router = new Router()
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 const PORT = config.PORT
 
 router.get("/", async (req,res)=> {
-    let OGprodList = await manager.getProducts()
+    let OGprodList = await productService.getProducts()
     
     let prodList = []
 
@@ -52,7 +52,7 @@ socketServer.on("connection", async (socket) => {
 
 socketServer.on("connection", async (value)=>{
     console.log("query prods")
-    let products = await manager.getProducts()
+    let products = await productService.getProducts()
 
  
     socketServer.emit("reloadProd",  products );

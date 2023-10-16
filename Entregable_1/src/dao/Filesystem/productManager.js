@@ -6,9 +6,9 @@ class ProductManager {
     #path
 
     static id = 0;
-    constructor(fileName) {
+    constructor() {
         this.products = [];
-        this.#path =   "./src/dao/Filesystem/storage/productLists" + fileName;
+        this.#path =  "./src/dao/Filesystem/storage/productLists/products.json";
         this._initializePath();
     }
 

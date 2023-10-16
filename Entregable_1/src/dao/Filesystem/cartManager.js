@@ -3,9 +3,9 @@ import fs from "fs";
 class CartManager {
     #path
     static cartId = 1
-    constructor(fileName){
+    constructor(){
         this.list = []
-        this.#path = "./src/dao/Filesystem/storage/Carts/"+ fileName
+        this.#path = "./src/dao/Filesystem/storage/Carts/cart.json"
         this._initializePath();
     }
 
