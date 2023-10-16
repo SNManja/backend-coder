@@ -21,6 +21,7 @@ export default class MongoSingleton {
     #connectToMongo() {
         async () => {
             try {
+                console.log("config.MONGO_URL", config.MONGO_URL)
                 await mongoose.connect(config.MONGO_URL, {
                     userNewUrlParser: true, 
                     useUnifiedTopology: true,
@@ -33,6 +34,10 @@ export default class MongoSingleton {
                 process.exit();
             }
         }
+    }
+    
+    isConnected() {
+        console.log("IS CONNECTED TRUE");
     }
 
 }

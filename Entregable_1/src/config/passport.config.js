@@ -17,13 +17,18 @@ import { createHash, isValidPassword } from "../utils.js";
 
 const LocalStrategy = local.Strategy;
 
-const initPassport = () =>{
 /*
 ============================================================
                     Github Strategy
 ============================================================
 */
 
+const initPassport = () =>{
+/*
+============================================================
+                    Github Strategy
+============================================================
+*/
     passport.use("github", new GithubStrategy({
         clientID: "Iv1.ef39cd7715c6a2a6",
         clientSecret: "35a6caf447e21580a37d3156fede326c85be0d98",
@@ -55,9 +60,6 @@ const initPassport = () =>{
 
 
     }))
-
-
-
 
 /*
 ============================================================

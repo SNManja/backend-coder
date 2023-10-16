@@ -11,8 +11,7 @@ async function initializeMongoService() {
     console.log("Iniciando servicio para MongoDB");
     try {
         // conectamos Mongo
-        const initialDBConnection = MongoSingleton.getInstance()
-        // Creamos las instancias de las Clases de DAO de Mongo
+        MongoSingleton.getInstance()
         const { CartManagerDB } = await import('../dao/Mongo/cartsManagerDB.js');
         cartService = new CartManagerDB();
         console.log("Servicio de carts cargado:");

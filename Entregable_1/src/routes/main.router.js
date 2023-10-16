@@ -8,6 +8,7 @@ const app = express();
 
 const PORT = config.PORT
 
+
 router.get("/", async (req,res)=> {
     let OGprodList = await productService.getProducts()
     
