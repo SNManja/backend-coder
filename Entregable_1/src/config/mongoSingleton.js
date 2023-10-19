@@ -6,35 +6,35 @@ export default class MongoSingleton {
     static #instance;
 
     constructor(){
-        this.#connectToMongo();
+        this.#connectMongoDB();
     }
 
 
     static getInstance() {
         if (this.#instance) {
-            console.log("Already connected to Mongo");
+            console.log("Ya se ha abierto una conxion a MongoDB");
         } else {
-            this.#instance = new MongoSingleton();
+            this.#instance = new MongoSingleton()
+        }
+        return this.#instance;
+    }
+    
+    
+    #connectMongoDB = async () => {
+        try {
+            await mongoose.connect(config.MONGO_URL, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                // Cambiar el nivel de escritura a 1 (menos seguro pero más rápido)
+                w: 1,
+            })
+            console.log("Conectado con exito a la DB");
+        } catch (error) {
+            console.error("No se pudo conectar a la BD usando Moongose: " + error);
+            process.exit();
         }
     }
-
-    #connectToMongo() {
-        async () => {
-            try {
-                console.log("config.MONGO_URL", config.MONGO_URL)
-                await mongoose.connect(config.MONGO_URL, {
-                    userNewUrlParser: true, 
-                    useUnifiedTopology: true,
-                    // Cambia nivel de escritura a 1. Menos seguro pero mas rapido!
-                    w: 1
-                })
-                console.log("db connected")
-            } catch ( err ) {
-                console.log( err )
-                process.exit();
-            }
-        }
-    }
+    
     
     isConnected() {
         console.log("IS CONNECTED TRUE");

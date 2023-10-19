@@ -1,17 +1,21 @@
-import express, { Router } from "express";
-import { Server } from "socket.io";
-import config from "../config/config.js";
-import { productService } from "../services/factory.js";
+import { Router } from "express";
+import * as productController from "../controller/product.controller.js";
 
 const router = new Router()
-const app = express();
 
-const PORT = config.PORT
 
 
 router.get("/", async (req,res)=> {
-    let OGprodList = await productService.getProducts()
-    
+
+    let OGprodList = []
+    try {
+        OGprodList = await productController.getProducts()
+
+    } catch(err){
+        console.log("Couldnt get products")
+    }
+
+
     let prodList = []
 
 
@@ -38,29 +42,9 @@ router.get("/realTimeProducts", (req, res) => {
     res.render("realTimeProducts", {})
 })
 
-const httpServer = app.listen(PORT, ()=> {
-    console.log("connected to port", PORT)
-
-})
-
-const socketServer = new Server(httpServer)
-
-socketServer.on("connection", async (socket) => {
-    console.log("nuevo cliente conectado")
-    
-})
 
 
-socketServer.on("connection", async (value)=>{
-    console.log("query prods")
-    let products = await productService.getProducts()
 
- 
-    socketServer.emit("reloadProd",  products );
-})
-
-
-export { socketServer };
 
 
 export default router;

@@ -1,7 +1,7 @@
 import { Router } from "express";
+import { socketServer } from "../app.js";
 import * as productService from "../controller/product.controller.js";
 import { uploader } from "../utils.js";
-import { socketServer } from "./main.router.js";
 
 const router = Router()
 let PC = productService;

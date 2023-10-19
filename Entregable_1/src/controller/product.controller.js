@@ -8,7 +8,6 @@ export async function getProducts (req, res) {
         let limit = parseInt(req.query.limit)
         
 
-    
         while (prodList.length != limit && prodList.length && limit) {
             prodList.pop()
         }
