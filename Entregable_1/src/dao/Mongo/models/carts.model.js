@@ -10,7 +10,9 @@ const cartSchema = new mongoose.Schema({
             quantity: Number,
             
         }],
-    default: []
+},
+{
+    collection: 'carts' // Specify the collection name here
 })
 
 

@@ -8,7 +8,7 @@ export async function addNewCart(req, res) {
 
         let id = await cartService.addCart(carrito)
 
-        res.send("Cart "+ id +" created")
+        res.send({ carrito: id })
     } catch (err){
         console.error(err)
     }
@@ -17,8 +17,8 @@ export async function addNewCart(req, res) {
 export async function findCartById(req, res){
     try {
         let cart = await cartService.getCartById(req.params.cid)
-        console.log("Cart found", cart )
-        res.status(200).send(cart)
+
+        res.status(200).send({ carrito: cart })
     } catch (err){
         console.log("Cart not found")
         res.status(400).send(err)

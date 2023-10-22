@@ -14,6 +14,9 @@ const productSchema = new mongoose.Schema({
         type: String
     }]
 
+},
+{
+    collection: 'products' // Specify the collection name here
 })
 
 productSchema.plugin(mongoosePaginate)

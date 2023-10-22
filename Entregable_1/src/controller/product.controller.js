@@ -1,10 +1,15 @@
+import { socketServer } from "../app.js";
 import { productService } from '../services/factory.js';
 
 
+async function socketEmitter(){
+    socketServer.emit("reloadProd", await productService.getProducts());
+}
 export async function getProducts (req, res) {
     try {
-       
-        let prodList = await productService.getProducts(req.query)
+      
+        let prodList = await productService.getProducts()
+        
         let limit = parseInt(req.query.limit)
         
 
@@ -45,19 +50,20 @@ export async function addProduct (req,res){
         
     }
     
-    
 }
 
-export async function getProductById (req, res) {
+export async function updateProductById (req, res) {
     try {
         let campo = req.body
         
         if ( !campo ){
             throw new Error('Nothing to update');
         }
+        
         await productService.updateProduct(req.params.pid, campo  )
+        
         socketEmitter()
-
+      
         res.status(200).send("Product updated successfully"+ String( await productService.getProductById(req.params.pid) ) )
     } catch (err){
         res.status(400).send("Error updating product: ", err)
@@ -75,3 +81,4 @@ export async function deleteProductById  (req, res) {
     }
     
 }
+

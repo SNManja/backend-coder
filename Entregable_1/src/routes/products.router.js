@@ -1,14 +1,11 @@
 import { Router } from "express";
-import { socketServer } from "../app.js";
-import * as productService from "../controller/product.controller.js";
+import * as productController from "../controller/product.controller.js";
 import { uploader } from "../utils.js";
 
 const router = Router()
-let PC = productService;
+let PC = productController;
 
-async function socketEmitter(){
-    socketServer.emit("reloadProd", await PC.getProducts());
-}
+
 // main /api/products page
 router.get("/", PC.getProducts)
 
@@ -17,7 +14,7 @@ router.get("/:pid", PC.getProductsById)
 
 router.post("/", uploader.array("thumbnails"), PC.addProduct)
 
-router.put("/:pid", PC.getProductById)
+router.put("/:pid", PC.updateProductById)
 
 router.delete("/:pid", PC.deleteProductById)
 

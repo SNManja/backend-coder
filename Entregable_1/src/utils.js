@@ -30,16 +30,38 @@ export const isValidPassword = (user, password) => bcrypt.compareSync(password, 
 
 // JWT 
 export const generateJWToken = (user) => {
-    return jwt.sign({user}, PRIVATE_KEY, {expiresIn: "24hs"})
-}
+    return jwt.sign({ user }, PRIVATE_KEY, { expiresIn: '24h' });
+};
 
 export const authToken = (req, res, next) =>{
-    const authHeader = req.headers.authorization;
-    if(!authHeader) return res.status(401).send({ error: "Not authenticated" })
-    const token = authHeader.split(" ")[1];
+    const token = req.headers.cookie.split(';')[0].split("=")[1];
+  
+    if(!token) return res.status(401).send({ error: "Not authenticated" })
+    
     jwt.verify(token, PRIVATE_KEY, (error, credentials) =>{
         if(error) return res.status(403).send({error: "Not authorized"})
         req.user = credentials.user
         next();
     })
+}
+
+export async function getUserCart(cartID){
+    let carrito
+    try {
+        let response = await fetch(`http://localhost:8080/api/cart/${cartID}`, {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            const data = await response.json();
+            carrito = data.carrito;
+        } else {
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+    } catch(err){
+        throw err;
+    }
+    return carrito;
 }

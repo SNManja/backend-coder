@@ -1,0 +1,25 @@
+<div>
+    <h1>User Cart</h1>
+    <button id="logout-button">Logout</button>
+    <button id="products-button">Product list</button>
+    <button id="checkout-button">Checkout</button>
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>Role: {{ user.role }}</p>
+    <div><p>Cart id:</p> <p id="cart-id">{{ user.cart }}</p></div>
+    <p>Products on cart:</p>
+    <div id="cart-container">
+        {{#each cart.list}}
+        <div class="product-in-cart">
+            <div><p>Id:</p><p class="prod-id">{{this.prodID._id}}</p></div>
+            <div><p>Title: </p><p class="title">{{this.prodID.title}}</p></div>
+            <div><p>price: </p><p class="price">{{this.prodID.price}}</p></div>
+            <div><p>Stock: </p><p class="stock">{{this.prodID.stock}}</p></div>
+            <div><p>Quantity: </p><p class="quantity">{{this.quantity}}</p></div>
+            <input class=delButton type="button" value="-">
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script src="/js/userCart.js"></script>
+<link rel="stylesheet" href="/css/user-cart-display.css">

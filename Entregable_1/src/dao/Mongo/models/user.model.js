@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     password: String, 
     role: String,
     cart: String,
+    loggedBy: String,
 })
 
 export const userModel = mongoose.model("users", userSchema)

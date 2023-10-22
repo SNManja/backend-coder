@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-
+import { generateJWToken } from "../utils.js";
 
 const router = Router()
 
@@ -10,12 +10,18 @@ router.get("/github", passport.authenticate('github', { scope: ['user:email'] })
 
 router.get("/githubcallback",passport.authenticate("github", {failureRedirect: "/github/error"}), async (req, res)=>{
     const user = req.user;
+    /*
+
+    Para sesiones en mongo
     req.session.user = {
         name:  `${user.first_name} ${user.last_name}`,
         email: user.email,
         age: user.age
     }
+    */
     //req.session.admin = true
+    
+    
     res.redirect("/users")
 })
 
@@ -29,22 +35,23 @@ router.post("/register", passport.authenticate("register"),async(req,res) =>{
 // Si tengo que hacer el redirect se lo agrego a authenticate como segundo
 // param: {failureRedirect: "/failLogin"}
 router.post("/login", passport.authenticate("login"),async (req, res) =>{
-    if(!req.user) return res.status(400).json({ status: 'error', msg: 'Invalid credentials'})
+    let user = req.user
+    if(!user) return res.status(400).json({ status: 'error', msg: 'Invalid credentials'})
 
-    req.session.user = {
-        firstName:  req.user.first_name,
-        lastName:   req.user.last_name,
-        age:        req.user.age,
-        email:      req.user.email,
-        
-    }
-    res.send({status: "success", payload: req.user})
-   
+    const access_token = await generateJWToken(user);
+    console.log(access_token)
+    // res.send({ jwt: access_token})
+
+    res.cookie("jwtCookieToken", access_token,{
+        maxAge: 3600 * 24 * 60 * 60,
+        //httpOnly: true,
+    })
+    res.send({ message: "Login successful"})
 })
 
 router.delete("/logout", async (req, res) => {
     console.log("logging out")
-    req.session.destroy();
+    res.clearCookie("jwtCookieToken");
     res.send({ status: 200,  message: "User log'd out successfully" });
 })
 

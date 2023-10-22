@@ -1,9 +1,11 @@
+import express from "express";
 import passport from "passport";
 import GithubStrategy from "passport-github2";
 import local from "passport-local";
 import { userModel } from "../dao/Mongo/models/user.model.js";
 import { createHash, isValidPassword } from "../utils.js";
 
+const app = express();
 /*
     Github Auth
     
@@ -13,6 +15,30 @@ import { createHash, isValidPassword } from "../utils.js";
 
     35a6caf447e21580a37d3156fede326c85be0d98
 */
+
+async function getNewCart(){
+    try {
+        const response = await fetch('http://localhost:8080/api/cart/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Received data:', data);
+          // You can access the 'carrito' property from the data object
+          const carritoId = data.carrito;
+          return carritoId;
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      } catch (error) {
+        throw error;
+      }
+}
 
 
 const LocalStrategy = local.Strategy;
@@ -48,6 +74,7 @@ const initPassport = () =>{
                     age: 18,
                     email: profile_json.email,
                     password: "",
+                    cart: await  getNewCart(),
                     loggedBy: "Github"
                 }
                 const result =  await userModel.create(newUser)
@@ -76,14 +103,14 @@ const initPassport = () =>{
                 }
 
                 const user = {
-                    first_name: first_name,
-                    last_name: last_name,
-                    email: email,
-                    age: age,
+                    first_name,
+                    last_name,
+                    email,
+                    age,
                     password: createHash(password),
-                    role: "user",
-                    cart: "New cart id"
-                }
+                    cart: await getNewCart(),
+                    loggedBy: "App"
+                }; // Falta agregar rol y carrito
         
                 const result = await userModel.create(user)
                 
@@ -95,36 +122,26 @@ const initPassport = () =>{
         }
     ))
 
-    passport.use("login", new LocalStrategy({usernameField: "email"}, async (username, password, done)=> {
-        try{
-            const user= await userModel.findOne({ email: username })
-        
-            if (!user){ 
-                res.status(401).send({ status: "error", error: "Incorrect credentials"})
-                return done(null, false)
+    passport.use('login', new LocalStrategy(
+        { passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
+            try {
+                const user = await userModel.findOne({ email: username });
+                console.log("Usuario encontrado para login:");
+                console.log(user);
+                if (!user) {
+                    console.warn("User doesn't exists with username: " + username);
+                    return done(null, false);
+                }
+                if (!isValidPassword(user, password)) {
+                    console.warn("Invalid credentials for user: " + username);
+                    return done(null, false);
+                }
+                return done(null, user);
+            } catch (error) {
+                return done(error);
             }
-
-            if(!isValidPassword(user, password)){
-                res.status(403).send({ status: "error", error: "Incorrect password"})
-            }
-        /*
-            Esto estaba rompiendo todo, ver pq
-            
-            req.session.user = {
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email,
-                age: user.age,
-                role: user.role,
-                cart: user.cart
-            } 
-
-        */
-            return done(null, user)
-        } catch (err) {
-            return done(err)
-        }
-    }))
+        })
+    );
 
     passport.serializeUser((user, done) => {
         done(null, user._id);

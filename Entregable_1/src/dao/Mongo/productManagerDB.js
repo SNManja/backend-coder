@@ -1,9 +1,7 @@
 
 import { productModel } from "./models/product.model.js";
 
-
 class ProductManagerDB {
-
     async getProducts(thisquery = {}) {
         try {
             const find = {}
@@ -41,7 +39,6 @@ class ProductManagerDB {
         }
     }
 
-
     async addProduct(product) {
         try{
             return productModel.create(product)
@@ -61,8 +58,6 @@ class ProductManagerDB {
         }
     }
 
-
-
     async deleteProduct(id) {
         try {
             return await productModel.findByIdAndDelete(id);
@@ -72,19 +67,15 @@ class ProductManagerDB {
         }
     }
 
-
-
     async updateProduct(id, campo) {
         try {
+            console.log(id, campo)
             return await productModel.findByIdAndUpdate(id, campo, { new: true });
         } catch (err) {
             console.error(err)
         }
     }
 };
-
-
-
 
 export { ProductManagerDB };
 

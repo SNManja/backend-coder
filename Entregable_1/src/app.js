@@ -1,18 +1,22 @@
 
 
+import MongoStore from "connect-mongo";
 import express from "express";
 import handlebars from "express-handlebars";
-import * as productController from "./controller/product.controller.js";
+import session from "express-session";
+import passport from "passport";
+import { Server } from "socket.io";
+import config from "./config/config.js";
+import initPassport from './config/passport.config.js';
 import cartRouter from "./routes/cart.router.js";
 import githubLoginViewsRouter from "./routes/github-login.views.router.js";
 import mainPageRouter from "./routes/main.router.js";
 import { default as productsRouter } from "./routes/products.router.js";
 import sessionsRouter from "./routes/sessions.router.js";
+import userCartRouter from "./routes/user.cart.router.js";
 import userViewsRouter from "./routes/user.views.router.js";
+import { productService } from './services/factory.js';
 import { __dirname } from "./utils.js";
-
-import { Server } from "socket.io";
-import config from "./config/config.js";
 
 
 const app = express()
@@ -20,10 +24,9 @@ const app = express()
 /*
 Tendria que pasar el app al factory y de ahi cargarlo no?
 
-import MongoStore from "connect-mongo";
-import session from "express-session";
 
 //Config Sessions. Esto tendria que ir en el factory no? !!!!!!!!!!!!!!!!
+*/
 let MONGO_URL = config.MONGO_URL
 app.use(session({
     store: MongoStore.create({
@@ -37,12 +40,11 @@ app.use(session({
 }))
 
 
-
 //Passport middleware
 initPassport();
 app.use(passport.initialize());
 app.use(passport.session());
-*/
+
 // Middleware para el req.query
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
@@ -62,6 +64,7 @@ app.use("/api/sessions",sessionsRouter)
 app.use("/users",userViewsRouter); 
 app.use("/github",githubLoginViewsRouter); 
 app.use("/", mainPageRouter)
+app.use("/users/cart/", userCartRouter)
 
 
 const PORT = config.PORT
@@ -79,7 +82,7 @@ socketServer.on("connection", async (socket) => {
 
 socketServer.on("connection", async (value)=>{
     console.log("query prods")
-    let products = await productController.getProducts() 
+    let products = await productService.getProducts() 
     socketServer.emit("reloadProd",  products );
 })
 
