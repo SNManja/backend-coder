@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { genMockProdList } from "../mock-functions.js";
 import { productService } from "../services/factory.js";
 import { authToken } from "../utils.js";
 
@@ -9,6 +10,9 @@ const router = new Router()
 
 router.get("/", async (req,res)=> {
 
+    // Con esto activo o desactivo los mock
+    let addMockProducts = true;
+
     let OGprodList = []
     try {
         OGprodList = await productService.getProducts()
@@ -17,24 +21,22 @@ router.get("/", async (req,res)=> {
         console.log("Couldnt get products")
     }
 
-
     let prodList = []
+    if(!addMockProducts){
+        OGprodList.forEach((prod) =>{
+            let newProd = {}
+            newProd.title = prod.title
+            newProd.desc= prod.desc
+            newProd.price = prod.price
+            newProd.status = prod.status
+            newProd.stock = prod.stock
+            newProd.code = prod.code
+            prodList.push(newProd)
+        })
+    } else {
+        prodList = genMockProdList()
+    }
 
-
-    // Esto es horrendo, pero fue la unica solucion a un conflicto con handlebars que encontre. No me permitia pasar directamente los valores que llegaban de la database por un tema de seguridad
-    OGprodList.forEach((prod) =>{
-        let newProd = {}
-        newProd.title = prod.title
-        newProd.desc= prod.desc
-        newProd.price = prod.price
-        newProd.status = prod.status
-        newProd.stock = prod.stock
-        newProd.code = prod.code
-        prodList.push(newProd)
-    })
-
-
-    console.log(prodList)
     res.render("home",  {prodList} )
 })
 

@@ -44,7 +44,7 @@ router.get("/checkout", authToken, checkoutTicket ,async (req, res) => {
     console.log(`Checkout${checkout}`)
 
     res.render("checkout", { // Carrito esta dentro de req.user, el checkout hay q calcularlo
-        checkout: checkout, user: user
+        checkout: checkout
     })
     
 })
