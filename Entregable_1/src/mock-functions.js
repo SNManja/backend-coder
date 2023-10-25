@@ -27,7 +27,7 @@ function genMockProd(){
     newProd.desc = faker.commerce.productDescription()
     newProd.price = faker.commerce.price()
     newProd.status = true
-    newProd.stock = faker.number.int(0,50)
+    newProd.stock = faker.number.int(50)
     newProd.code = faker.string.alpha(3) + faker.number.int(100,999)  
         
     return newProd
