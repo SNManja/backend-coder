@@ -7,6 +7,7 @@ import session from "express-session";
 import passport from "passport";
 import { Server } from "socket.io";
 import config from "./config/config.js";
+import { addLogger } from "./config/logger.js";
 import initPassport from './config/passport.config.js';
 import cartRouter from "./routes/cart.router.js";
 import githubLoginViewsRouter from "./routes/github-login.views.router.js";
@@ -50,6 +51,7 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+app.use(addLogger)
 
 // Config handlebars
 app.engine("handlebars", handlebars.engine())
@@ -82,8 +84,19 @@ socketServer.on("connection", async (socket) => {
 
 socketServer.on("connection", async (value)=>{
     console.log("query prods")
-    let products = await productService.getProducts() 
-    socketServer.emit("reloadProd",  products );
+    try {
+        let products = await productService.getProducts() 
+        socketServer.emit("reloadProd",  products );
+    } catch(err){
+        console.error("socket error")
+    }
+    
+})
+
+
+app.get("/loggerTest",(req,res)=>{
+    req.logger.warn("Prueba log lvl warn") 
+    res.send("Prueba logger")
 })
 
 
