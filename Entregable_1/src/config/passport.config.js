@@ -122,8 +122,8 @@ const initPassport = () =>{
         }
     ))
 
-    passport.use('login', new LocalStrategy(
-        { passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
+    passport.use('login', new LocalStrategy({ 
+            passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
             try {
                 const user = await userModel.findOne({ email: username });
                 console.log("Usuario encontrado para login:");
@@ -142,6 +142,24 @@ const initPassport = () =>{
             }
         })
     );
+
+    passport.use("restorePassword", new LocalStrategy({
+        passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
+            try {
+                req.logger.debug("User: ")
+                const user = await userModel.findOne({ email: username });
+                req.logger.debug("Usuario existe:");
+                req.logger.debug(user);
+                if (!user) {
+                    req.logger.warn("User doesn't exist with that mail");
+                    return done(null, false);
+                }
+                return done(null, user);
+            } catch (error) {
+                return done(error);
+            }
+        })
+    )
 
     passport.serializeUser((user, done) => {
         done(null, user._id);

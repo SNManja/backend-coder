@@ -55,4 +55,19 @@ router.delete("/logout", async (req, res) => {
     res.send({ status: 200,  message: "User log'd out successfully" });
 })
 
+
+// No pude hacer que es passport funcionase
+router.post("/restorePassword", /*passport.authenticate("restorePassword"), */ async (req,res) => {
+
+    try{
+        req.logger.debug("Email recieved")
+        req.logger.debug(req.body.email)
+        req.logger.warn("sending mail")
+        res.send({ status: 200, message: "mail sent successfully" });
+    } catch (e){
+        res.send({ status: 500, message: "error sending mail" });
+    }
+    
+})
+
 export default router;
