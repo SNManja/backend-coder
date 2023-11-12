@@ -40,3 +40,4 @@ export async function checkoutTicket(req,res,next){
         console.error("Error with checkout of the ticket", err) 
     }
 }
+

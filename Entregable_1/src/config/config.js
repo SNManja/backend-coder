@@ -31,5 +31,7 @@ export default {
     persistence: program.opts().persist,
     adminName: process.env.ADMIN_NAME,
     adminPassword: process.env.ADMIN_PASSWORD,
-    enviroment: enviroment
+    enviroment: enviroment,
+    gmailAccount: process.env.GMAIL_ACCOUNT,
+    gmailPassword:process.env.GMAIL_PASSWORD
 };

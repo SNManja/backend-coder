@@ -11,6 +11,7 @@ import { addLogger } from "./config/logger.js";
 import initPassport from './config/passport.config.js';
 import cartRouter from "./routes/cart.router.js";
 import githubLoginViewsRouter from "./routes/github-login.views.router.js";
+import mailingRouter from "./routes/mailing.router.js";
 import mainPageRouter from "./routes/main.router.js";
 import { default as productsRouter } from "./routes/products.router.js";
 import sessionsRouter from "./routes/sessions.router.js";
@@ -67,6 +68,7 @@ app.use("/users",userViewsRouter);
 app.use("/github",githubLoginViewsRouter); 
 app.use("/", mainPageRouter)
 app.use("/users/cart/", userCartRouter)
+app.use("/api/mailing", mailingRouter)
 
 
 const PORT = config.PORT

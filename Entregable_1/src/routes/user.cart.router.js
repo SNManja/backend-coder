@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkoutTicket } from "../controller/ticket.controller.js";
+import { checkoutTicket } from "../controllers/ticket.controller.js";
 import { authToken, getUserCart } from "../utils.js";
 const router = Router()
 

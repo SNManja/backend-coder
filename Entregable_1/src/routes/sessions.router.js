@@ -31,7 +31,6 @@ router.post("/register", passport.authenticate("register"),async(req,res) =>{
     res.send({status: "success", message: "User registered successfully"})
 })
 
-
 // Si tengo que hacer el redirect se lo agrego a authenticate como segundo
 // param: {failureRedirect: "/failLogin"}
 router.post("/login", passport.authenticate("login"),async (req, res) =>{
@@ -55,14 +54,22 @@ router.delete("/logout", async (req, res) => {
     res.send({ status: 200,  message: "User log'd out successfully" });
 })
 
-
 // No pude hacer que es passport funcionase
 router.post("/restorePassword", /*passport.authenticate("restorePassword"), */ async (req,res) => {
-
     try{
+        // Aca tengo que pegar 
         req.logger.debug("Email recieved")
         req.logger.debug(req.body.email)
         req.logger.warn("sending mail")
+
+
+        fetch(`http://localhost:8080/api/mailing/${req.body.email}`, {
+            method: "get",
+            headers: { 
+                "Content-type": "application/json"
+            }
+        })
+
         res.send({ status: 200, message: "mail sent successfully" });
     } catch (e){
         res.send({ status: 500, message: "error sending mail" });

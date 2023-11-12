@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as CartService from "../controller/cart.controller.js";
+import * as CartService from "../controllers/cart.controller.js";
 
 let CS = CartService // Borrar es para q no se me vaya el import
 const router = Router()

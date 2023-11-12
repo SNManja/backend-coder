@@ -151,3 +151,302 @@ http: POST end /api/sessions/restorePassword - at 7/11/2023
 debug: Email recieved
 debug: santiagomanjarin111@gmail.com
 warn: sending mail
+http: GET end / - at 7/11/2023
+http: GET end /favicon.ico - at 7/11/2023
+http: GET end /realTimeProducts - at 7/11/2023
+http: GET end /realTimeProducts - at 7/11/2023
+http: GET end /users/login - at 7/11/2023
+http: GET end /users/register - at 7/11/2023
+http: GET end /users/restorePassword - at 7/11/2023
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+debug: This is the account that we will be sending the email
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+debug: This is the account that we will be sending the email
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+debug: This is the account that we will be sending the email
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+http: This is the account that we will be sending the email
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+warn: undefined
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 7/11/2023
+http: GET end / - at 7/11/2023
+http: GET end /users/restorePassword - at 7/11/2023
+http: POST end /api/sessions/restorePassword - at 7/11/2023
+debug: Email recieved
+debug: manjafx@gmail.com
+warn: sending mail
+http: GET end /api/mailing/manjafx@gmail.com - at 7/11/2023
+http: GET end / - at 7/11/2023
+http: GET end / - at 7/11/2023
+http: GET end /users/restorePassword/ - at 7/11/2023
+http: GET end / - at 8/11/2023
+http: GET end /users/restorePassword - at 8/11/2023
+http: POST end /api/sessions/restorePassword - at 8/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 8/11/2023
+http: POST end /api/sessions/restorePassword - at 8/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 8/11/2023
+http: POST end /api/sessions/restorePassword - at 8/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 8/11/2023
+http: GET end / - at 8/11/2023
+http: GET end /users/restorePassword - at 8/11/2023
+http: GET end /favicon.ico - at 8/11/2023
+http: POST end /api/sessions/restorePassword - at 8/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4 - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4 - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f - at 8/11/2023
+http: GET end /js/writePassword.js - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f - at 8/11/2023
+http: GET end /js/writePassword.js - at 8/11/2023
+http: GET end /users/restorePassword/654bd1a4a189b26b4e5cf93f?password=hello - at 8/11/2023
+http: GET end / - at 8/11/2023
+http: GET end /users/ - at 8/11/2023
+http: GET end /users/login - at 8/11/2023
+http: POST end /api/sessions/login - at 8/11/2023
+http: POST end /api/sessions/login - at 8/11/2023
+http: POST end /api/sessions/login - at 8/11/2023
+http: GET end / - at 9/11/2023
+http: GET end /users/restorePassword - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c54a51b2c4d79c5b6e612 - at 9/11/2023
+http: POST end /api/mailing/654c54a51b2c4d79c5b6e612 - at 9/11/2023
+http: GET end /users/restorePassword/654c54a51b2c4d79c5b6e612 - at 9/11/2023
+http: POST end /api/mailing/654c54a51b2c4d79c5b6e612 - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /users/restorePassword/654c54a51b2c4d79c5b6e612 - at 9/11/2023
+http: GET end /users/register - at 9/11/2023
+http: GET end /users/register - at 9/11/2023
+http: POST end /api/sessions/register - at 9/11/2023
+http: POST end /api/cart/ - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /realTimeProducts - at 9/11/2023
+http: DELETE end /api/sessions/logout - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: POST end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: POST end /api/mailing/id/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: POST end /api/mailing/id/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: POST end /api/mailing/id/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: POST end /api/mailing/id/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /realTimeProducts - at 9/11/2023
+http: DELETE end /api/sessions/logout - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: PUT end /api/mailing/654c55631b2c4d79c5b6e62b - at 9/11/2023
+warn: undefined
+http: GET end /users/restorePassword/654c55631b2c4d79c5b6e62b - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /realTimeProducts - at 9/11/2023
+http: DELETE end /api/sessions/logout - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c5f5452d8af2c56c571f9 - at 9/11/2023
+http: PUT end /api/mailing/654c5f5452d8af2c56c571f9 - at 9/11/2023
+http: GET end /users/restorePassword/654c5f5452d8af2c56c571f9 - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c5fa452d8af2c56c57206 - at 9/11/2023
+http: GET end /users/restorePassword/654c5fa452d8af2c56c57206?password=hola123 - at 9/11/2023
+http: GET end /users/restorePassword/654c5fa452d8af2c56c57206?password=hola123 - at 9/11/2023
+http: GET end /users/restorePassword/654c5fa452d8af2c56c57206 - at 9/11/2023
+http: PUT end /api/mailing/654c5fa452d8af2c56c57206 - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /realTimeProducts - at 9/11/2023
+http: DELETE end /api/sessions/logout - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c5ffe52d8af2c56c57227 - at 9/11/2023
+http: PUT end /api/mailing/654c5ffe52d8af2c56c57227 - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: POST end /api/sessions/login - at 9/11/2023
+http: GET end /realTimeProducts - at 9/11/2023
+http: DELETE end /api/sessions/logout - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end / - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c6168c57ef363fb24fd60 - at 9/11/2023
+http: GET end /users/restorePassword/654c6168c57ef363fb24fd60 - at 9/11/2023
+http: PUT end /api/mailing/654c6168c57ef363fb24fd60 - at 9/11/2023
+http: GET end /users/login - at 9/11/2023
+http: GET end /users/restorePassword/ - at 9/11/2023
+http: POST end /api/sessions/restorePassword - at 9/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 9/11/2023
+http: GET end /users/restorePassword/654c619b127d81d5ff8280bd - at 9/11/2023
