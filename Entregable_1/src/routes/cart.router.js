@@ -11,7 +11,6 @@ router.get("/:cid", CS.findCartById)
 
 router.post("/:cid/product/:pid/", CS.addProductToCart)
 
-// 2nda entrega 
 router.delete("/:cid/products/:pid",CS.deleteProductFromCart)
 
 router.put("/:cid", CS.updateProductInCart)

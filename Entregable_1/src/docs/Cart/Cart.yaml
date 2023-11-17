@@ -1,0 +1,159 @@
+paths:
+  /api/cart/:
+    post: 
+      summary: "Adds a cart to the Database"
+      tags: 
+        - Cart
+      responses:
+        "200": "OK. Returns the generated cart ID"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                carrito:
+                  type: string
+                  description: The ID of the cart
+
+  /api/cart/{cid}:
+    get: 
+      summary: "Finds the cart with the given ID"
+      tags: 
+        - Cart 
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: "Necessary ID to retrieve the cart"
+          schema:
+            $type: String
+      responses:
+        "200": "OK. Returns the desired cart"
+        content: 
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/carts'
+    delete:
+      summary: "Finds the cart with the given ID and deletes it"
+      tags: 
+        - Cart 
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: "Cart ID"
+          schema:
+            $type: String
+      responses:
+        "200": "OK. Cart {cid} has been deleted"
+
+    
+    put: 
+      summary: "Updates all the products in the cart"
+      tags: 
+        - Cart 
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: "Cart ID"
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        # No describi con mas detalle porque seria el product schema sin necesidad de estar completo
+      responses:
+        "200": "OK. Cart {cid} updated products"
+
+
+  /api/cart/{cid}/product/{pid}:
+    post: 
+      summary: "Adds product id into a cart's list"
+      tags: 
+      - Cart 
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: "Product ID"
+        schema:
+          $type: string
+      - name: cid
+        in: path
+        required: true
+        description: "Cart ID"
+        schema:
+          $type: string
+      responses:
+        "200": "OK. Returns a message indicating that pid was added to cid"
+        "400": "Request failed. Trouble adding product into the cart"   
+
+    delete: 
+      summary: "Deletes product id from a cart's list"
+      tags: 
+      - Cart 
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: "Product ID"
+        schema:
+          $type: string
+      - name: cid
+        in: path
+        required: true
+        description: "Cart ID"
+        schema:
+          $type: string
+      responses:
+        "200": "OK. Returns a message indicating that pid was deleted to cid"
+        "400": "Request failed. Trouble deleting product into the cart"   
+
+    put:
+      summary: "Modifies stock of a specific product in cart"
+      tags: 
+      - Cart 
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: "Product ID"
+        schema:
+          $type: string
+      - name: cid
+        in: path
+        required: true
+        description: "Cart ID"
+        schema:
+          $type: string
+      responses:
+        "200": "OK. Returns a message indicating that pid was deleted to cid"
+        "400": "Request failed. Trouble deleting product into the cart"   
+
+    
+
+
+
+
+components:
+  schemas:
+    carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: "Mongo generated ID"
+        list:
+          type: array
+          description: "A list of product items in the cart"
+          items:
+            type: object
+            properties:
+              prodID:
+                type: string
+                description: "The ID of the product in the cart"
+                format: uuid
+                ref: products
+              quantity:
+                type: integer
+                description: "The quantity of the product in the cart"

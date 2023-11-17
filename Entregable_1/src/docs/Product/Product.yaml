@@ -1,0 +1,109 @@
+paths:
+  /:
+    get: 
+      summary: Return a list of the products available
+      tags: 
+      - Product
+      responses:
+          "200": 
+            description: "OK. Returns a list of the products available"
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/product'
+          "400": 
+            description: "Request failed. Trouble getting products"   
+
+  /{pid}:
+    get: 
+      summary: Return the product if it's available
+      tags: 
+      - Product
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: "Prod ID"
+          schema:
+            $type: String
+      responses:
+        "200": 
+            description: "OK. Returns the product"
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/product'
+        "400": 
+          description: "Request failed. Trouble getting products"   
+    put:
+      summary: Update product with the specified ID
+      tags: 
+      - Product
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: "Prod ID"
+          schema:
+            $type: String
+      requestBody:
+        required: true
+      responses:
+        "200": 
+          description: "OK. Product has been updated"
+        "400":
+          description: "Error updating the product"
+    delete: 
+      summary: Delete the product if it's available
+      tags: 
+      - Product
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: "Prod ID"
+          schema:
+            $type: String
+      responses:
+        "200": 
+            description: "OK. Product has been deleted"
+        "400": 
+          description: "Request failed. Trouble deleting product"   
+
+
+
+components:
+  schemas:
+    product:
+      description: Represents a product in the catalog
+      type: object
+      properties:
+        title:
+          type: string
+          description: The product's title
+        desc:
+          type: string
+          description: The product's description
+        price:
+          type: number
+          description: The product's price
+        status:
+          type: boolean
+          description: The product's availability status
+        stock:
+          type: integer
+          description: The product's available stock quantity
+        code:
+          type: string
+          description: The product's unique identifier code
+        category:
+          type: string
+          description: The product's category
+        thumbnails:
+          type: array
+          description: A list of URLs for the product's thumbnails
+          items:
+            type: string
+            format: uri

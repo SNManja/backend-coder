@@ -92,7 +92,7 @@ export async function deleteCart (req, res) {
         
         await cartService.cleanCart(cid)
        
-        res.status(200).send( `Cart id-${cid} is now empy`)
+        res.status(200).send( `Cart ${cid} has been deleted`)
     } catch(e){
         console.error(e);
         res.status(500).send("Internal Server Error");

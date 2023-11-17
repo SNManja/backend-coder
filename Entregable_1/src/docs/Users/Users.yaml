@@ -1,0 +1,13 @@
+paths:
+  /api/users:  #Este no va a funcionar bien por el tema de las sesiones
+    get:
+      summary: "Valida la sesión del usuario y muestra los datos de su perfil"
+      tags:
+        - Users
+      responses:
+        "200": 
+          description: "Operacion exitosa"
+        "400":
+          description: "No se pudo renderizar"
+        "500":
+          description: "Error inesperado con el servidor" 

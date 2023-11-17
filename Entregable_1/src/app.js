@@ -6,7 +6,9 @@ import handlebars from "express-handlebars";
 import session from "express-session";
 import passport from "passport";
 import { Server } from "socket.io";
+import swaggerUIExpress from "swagger-ui-express";
 import config from "./config/config.js";
+import { swaggerSpecs } from "./config/documentation.config.js";
 import { addLogger } from "./config/logger.js";
 import initPassport from './config/passport.config.js';
 import cartRouter from "./routes/cart.router.js";
@@ -27,7 +29,7 @@ const app = express()
 Tendria que pasar el app al factory y de ahi cargarlo no?
 
 
-//Config Sessions. Esto tendria que ir en el factory no? !!!!!!!!!!!!!!!!
+// Config Sessions. Esto tendria que ir en el factory no? !!!!!!!!!!!!!!!!
 */
 let MONGO_URL = config.MONGO_URL
 app.use(session({
@@ -53,6 +55,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.use(addLogger)
+
+// Config swagger
+app.use('/apidocs', swaggerUIExpress.serve, swaggerUIExpress.setup(swaggerSpecs))
 
 // Config handlebars
 app.engine("handlebars", handlebars.engine())
