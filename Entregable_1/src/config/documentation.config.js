@@ -1,4 +1,5 @@
 import swaggerJSDoc from "swagger-jsdoc";
+import { __dirname } from "../utils";
 
 const swaggerOptions = {
     definition: {
@@ -8,7 +9,7 @@ const swaggerOptions = {
             description: ""
         }
     },
-    apis: [`./src/docs/**/*.yaml`]
+    apis: [`${__dirname}/docs/**/*.yaml`]
 };
 
 

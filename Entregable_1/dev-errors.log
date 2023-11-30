@@ -568,3 +568,43 @@ http: GET end /apidocs/swagger-ui-standalone-preset.js - at 17/11/2023
 http: GET end /apidocs/swagger-ui-bundle.js - at 17/11/2023
 http: GET end /apidocs/swagger-ui-init.js - at 17/11/2023
 http: GET end /apidocs/favicon-32x32.png - at 17/11/2023
+http: GET end /apidocs/ - at 17/11/2023
+http: GET end /apidocs/swagger-ui.css - at 17/11/2023
+http: GET end /apidocs/swagger-ui-init.js - at 17/11/2023
+http: GET end /apidocs/swagger-ui-standalone-preset.js - at 17/11/2023
+http: GET end /apidocs/swagger-ui-bundle.js - at 17/11/2023
+http: GET end /apidocs/favicon-32x32.png - at 17/11/2023
+http: GET end /users/login - at 17/11/2023
+http: GET end /favicon.ico - at 17/11/2023
+http: GET end /users/register - at 17/11/2023
+http: POST end /api/sessions/register - at 17/11/2023
+http: POST end /api/cart/ - at 17/11/2023
+http: GET end /users/login - at 17/11/2023
+http: POST end /api/sessions/login - at 17/11/2023
+http: GET end /realTimeProducts - at 17/11/2023
+http: GET end /users/cart - at 17/11/2023
+http: GET end /api/cart/6556fc2e4b56b228dc7c705e - at 17/11/2023
+http: GET end /realTimeProducts - at 17/11/2023
+http: POST end /users/cart/add/64f86f6e91e32cd4135c4fda/ - at 17/11/2023
+http: POST end /api/cart/6556fc2e4b56b228dc7c705e/product/64f86f6e91e32cd4135c4fda - at 17/11/2023
+http: POST end /users/cart/add/64f86f6e91e32cd4135c4fda/ - at 17/11/2023
+http: POST end /api/cart/6556fc2e4b56b228dc7c705e/product/64f86f6e91e32cd4135c4fda - at 17/11/2023
+http: POST end /users/cart/add/64f86f6e91e32cd4135c4fda/ - at 17/11/2023
+http: POST end /api/cart/6556fc2e4b56b228dc7c705e/product/64f86f6e91e32cd4135c4fda - at 17/11/2023
+http: GET end /users/cart - at 17/11/2023
+http: GET end /api/cart/6556fc2e4b56b228dc7c705e - at 17/11/2023
+http: GET end / - at 17/11/2023
+http: GET end /realTimeProducts - at 17/11/2023
+http: DELETE end /api/sessions/logout - at 17/11/2023
+http: GET end /users/login - at 17/11/2023
+http: GET end /users/restorePassword/ - at 17/11/2023
+http: POST end /api/sessions/restorePassword - at 17/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 17/11/2023
+http: POST end /api/sessions/restorePassword - at 17/11/2023
+debug: Email recieved
+debug: santiagomanjarin111@gmail.com
+warn: sending mail
+http: GET end /api/mailing/santiagomanjarin111@gmail.com - at 17/11/2023
