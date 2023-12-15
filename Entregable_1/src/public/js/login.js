@@ -24,7 +24,7 @@ form.addEventListener('submit', (e)=>{
                     // 2do:cookie
                     console.log("Cookies generadas:");
                     console.log(document.cookie);
-                    window.location.replace("/realTimeProducts")
+                    window.location.replace("/")
         
                 })
         } else if (result.status === 401) {

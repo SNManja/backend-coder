@@ -1,0 +1,20 @@
+<div>
+    <h1>Lista de productos</h1>
+    <div>
+    {{#each prodList}}
+        <div class="product">
+            <br>
+            <h2> {{ this.title }} </h2>
+            <p> Desc: {{ this.desc }} </p>
+            <p> Price: {{ this.price }} </p>
+            <p> Status: {{ this.status }} </p>
+            <p> Stock: {{ this.stock }} </p>
+            <p> Code: {{ this.code }}</p>
+            <br>
+        </div>
+    {{/each}}
+    </div>
+</div>
+<link rel="stylesheet" href="/css/product-display.css">
+
+

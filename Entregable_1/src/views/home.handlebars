@@ -1,27 +1,17 @@
-<div>
-    <h1>Lista de productos</h1>
-    <div>
-    {{#each prodList}}
-        <div class="product">
-            <br>
-            <h2> {{ this.title }} </h2>
-            <p> Desc: {{ this.desc }} </p>
-            <p> Price: {{ this.price }} </p>
-            <p> Status: {{ this.status }} </p>
-            <p> Stock: {{ this.stock }} </p>
-            <p> Code: {{ this.code }}</p>
-            <br>
-        </div>
-    {{/each}}
-    </div>
-</div>
-<link rel="stylesheet" href="/css/product-display.css">
-
-
-
-{{!
-    Esta plantilla debe
-    Contiener todos los productos agregados hasta el momento
+<div id="main-div">
+    <div id="hero-div">  </div>
     
-
-}}
+    <div id="desc-div">
+        <h1>MarketPlace</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo quibusdam fuga ipsa odit autem quaerat sed inventore sint placeat, cum tempore consectetur asperiores voluptatibus. Possimus consequatur rem quaerat id dignissimos.</p>
+        <div id="button-section">
+            <button class="section" id="products-button">Products</button>
+            <button class="section" id="profile-button">Profile</button>
+            <button class="section" id="cart-button">Cart</button>
+            <button class="section" id="logout-button">Logout</button>
+        </div>
+    </div>
+    
+</div>
+<script src="/js/home.js"></script>
+<link rel="stylesheet" href="/css/home-page.css">

@@ -1,14 +1,19 @@
 import { Router } from "express";
 import { genMockProdList } from "../mock-functions.js";
 import { productService } from "../services/factory.js";
-import { authToken } from "../utils.js";
+import { authAdmin, authToken } from "../utils.js";
 
 
 const router = new Router()
 
 
 
-router.get("/", async (req,res)=> {
+router.get("/",authToken, async (req,res)=> {
+    
+    res.render("home")
+})
+
+router.get("/mock", authToken, authAdmin, async (req,res)=> {
 
     // Con esto activo o desactivo los mock
     let addMockProducts = true;
@@ -37,13 +42,13 @@ router.get("/", async (req,res)=> {
         prodList = genMockProdList()
     }
 
-    res.render("home",  {prodList} )
+    res.render("mock",  {prodList} )
 })
 
 
-router.get("/realTimeProducts",authToken, (req, res) => {
+router.get("/products",authToken, (req, res) => {
 
-    res.render("realTimeProducts", {})
+    res.render("products", {})
 })
 
 

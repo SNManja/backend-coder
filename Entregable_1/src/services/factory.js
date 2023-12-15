@@ -6,6 +6,7 @@ let productService;
 let cartService;
 let ticketService;
 let restoreService;
+let userService;
 
 async function initializeMongoService() {
     console.log("Iniciando servicio para MongoDB");
@@ -32,6 +33,9 @@ async function initializeMongoService() {
         restoreService = new restoreManager();
         console.log("Servicio de restore");
 
+        const { userManager } = await import("../dao/Mongo/userManagerDB.js");
+        userService = new userManager();
+        console.log("Servicio de usuarios");
     } catch (error) {
         console.error("Error al iniciar MongoDB:", error);
         process.exit(1); // Salir con código de error
@@ -71,5 +75,5 @@ switch (config.persistence) {
         process.exit(1); // Salir con código de error
 }
 
-export { cartService, productService, restoreService, ticketService };
+export { cartService, productService, restoreService, ticketService, userService };
 

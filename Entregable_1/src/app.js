@@ -25,12 +25,7 @@ import { __dirname } from "./utils.js";
 
 const app = express()
 
-/*
-Tendria que pasar el app al factory y de ahi cargarlo no?
 
-
-// Config Sessions. Esto tendria que ir en el factory no? !!!!!!!!!!!!!!!!
-*/
 let MONGO_URL = config.MONGO_URL
 app.use(session({
     store: MongoStore.create({
@@ -98,12 +93,6 @@ socketServer.on("connection", async (value)=>{
         console.error("socket error")
     }
     
-})
-
-
-app.get("/loggerTest",(req,res)=>{
-    req.logger.warn("Prueba log lvl warn") 
-    res.send("Prueba logger")
 })
 
 

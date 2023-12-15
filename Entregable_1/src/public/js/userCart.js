@@ -19,7 +19,7 @@ logoutButton.addEventListener("click", (e)=>{
     })
 })
 productsButton.addEventListener("click", (e)=>{
-    window.location.replace("/realTimeProducts")
+    window.location.replace("/products")
 })
 
 checkoutButton.addEventListener("click", (e)=>{

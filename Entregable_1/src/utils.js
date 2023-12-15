@@ -45,6 +45,16 @@ export const authToken = (req, res, next) =>{
     })
 }
 
+export const authAdmin = (req, res, next) =>{
+    console.log("authAdmin", req.user)
+    if (req.user.role == "admin") {
+        next();
+    } else {
+        return res.status(401).send({ error: "Not a valid role" })
+    } 
+
+}
+
 export async function getUserCart(cartID){
     let carrito
     try {

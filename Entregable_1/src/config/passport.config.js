@@ -109,8 +109,9 @@ const initPassport = () =>{
                     age,
                     password: createHash(password),
                     cart: await getNewCart(),
-                    loggedBy: "App"
-                }; // Falta agregar rol y carrito
+                    loggedBy: "App",
+                    role: "normal"
+                }; 
         
                 const result = await userModel.create(user)
                 
