@@ -3,6 +3,7 @@ import passport from "passport";
 import GithubStrategy from "passport-github2";
 import local from "passport-local";
 import { userModel } from "../dao/Mongo/models/user.model.js";
+import { userService } from "../services/factory.js";
 import { createHash, isValidPassword } from "../utils.js";
 
 const app = express();
@@ -110,7 +111,8 @@ const initPassport = () =>{
                     password: createHash(password),
                     cart: await getNewCart(),
                     loggedBy: "App",
-                    role: "normal"
+                    role: "normal",
+                    last_login: new Date(),
                 }; 
         
                 const result = await userModel.create(user)
@@ -126,9 +128,8 @@ const initPassport = () =>{
     passport.use('login', new LocalStrategy({ 
             passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
             try {
-                const user = await userModel.findOne({ email: username });
-                console.log("Usuario encontrado para login:");
-                console.log(user);
+                let user = await userService.findUserByMail(username);
+                user = await userService.updateLogin(user);
                 if (!user) {
                     console.warn("User doesn't exists with username: " + username);
                     return done(null, false);

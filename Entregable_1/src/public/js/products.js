@@ -1,5 +1,4 @@
 
-
 productsDiv = document.getElementById("product-div");
 const socket = io();
 

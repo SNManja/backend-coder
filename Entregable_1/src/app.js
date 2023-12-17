@@ -11,6 +11,8 @@ import config from "./config/config.js";
 import { swaggerSpecs } from "./config/documentation.config.js";
 import { addLogger } from "./config/logger.js";
 import initPassport from './config/passport.config.js';
+import adminRouter from "./routes/admin.router.js";
+import adminViewsRouter from "./routes/admin.views.router.js";
 import cartRouter from "./routes/cart.router.js";
 import githubLoginViewsRouter from "./routes/github-login.views.router.js";
 import mailingRouter from "./routes/mailing.router.js";
@@ -69,6 +71,8 @@ app.use("/github",githubLoginViewsRouter);
 app.use("/", mainPageRouter)
 app.use("/users/cart/", userCartRouter)
 app.use("/api/mailing", mailingRouter)
+app.use("/admin", adminViewsRouter)
+app.use("/api/admin", adminRouter)
 
 
 const PORT = config.PORT

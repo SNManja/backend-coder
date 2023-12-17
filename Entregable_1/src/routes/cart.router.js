@@ -1,22 +1,21 @@
 import { Router } from "express";
 import * as CartService from "../controllers/cart.controller.js";
 
-let CS = CartService // Borrar es para q no se me vaya el import
 const router = Router()
 
  
-router.post("/",CS.addNewCart)
+router.post("/",CartService.addNewCart)
 
-router.get("/:cid", CS.findCartById)
+router.get("/:cid", CartService.findCartById)
 
-router.post("/:cid/product/:pid/", CS.addProductToCart)
+router.post("/:cid/product/:pid/", CartService.addProductToCart)
 
-router.delete("/:cid/products/:pid",CS.deleteProductFromCart)
+router.delete("/:cid/products/:pid",CartService.deleteProductFromCart)
 
-router.put("/:cid", CS.updateProductInCart)
+router.put("/:cid", CartService.updateProductInCart)
 
-router.put("/:cid/products/:pid", CS.updateStockInCart)
+router.put("/:cid/products/:pid", CartService.updateStockInCart)
 
-router.delete("/:cid", CS.deleteCart )
+router.delete("/:cid", CartService.deleteCart )
 
 export default router;

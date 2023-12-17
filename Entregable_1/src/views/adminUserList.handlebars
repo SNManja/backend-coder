@@ -1,0 +1,17 @@
+<div>
+    <h1>UserList</h1>
+    <button id="home-button">home</button>
+    <div id="user-container">
+        {{#each users}}
+        <div class="user">
+            <div><p>Id:</p><p class="prod-id">{{this._id}}</p></div>
+            <div><p>first_name: </p><p class="first-name">{{this.first_name}}</p></div>
+            <div><p>last_name: </p><p class="last-name">{{this.last_name:}}</p></div>
+            <div><p>email: </p><p class="email">{{this.email}}</p></div>
+            <div><p>role: </p><p class="role">{{this.role}}</p></div>
+            <input class="delButton" type="button" value="-">
+            <input class="editUserButton" type="button" value="Edit">
+        </div>
+        {{/each}}
+    </div>
+</div>

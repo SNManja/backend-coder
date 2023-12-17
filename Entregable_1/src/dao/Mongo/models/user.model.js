@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     role: String,
     cart: String,
     loggedBy: String,
+    last_login: Date,
 })
 
 export const userModel = mongoose.model("users", userSchema)

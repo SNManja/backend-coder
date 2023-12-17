@@ -29,7 +29,6 @@ export async function addProductToCart (req, res) {
     try {
         let cid = req.params.cid
         let pid = req.params.pid
-        
 
         await cartService.addProductsToCart(cid, pid)
         
