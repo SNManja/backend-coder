@@ -22,6 +22,25 @@ export async function updateUser(req, res) {
     }
 }
 
+export async function deleteUser(req, res) {
+    try {
+        await userService.deleteUser(req.params.uid)
+        res.send(200)
+    } catch(e) {
+        console.error("deleteUser", e.message)
+        res.status(400).send(err)
+    }
+}
+
+export async function upgradeUser(req, res) {
+    try {
+        await userService.changeUserRole(req.params.uid, "admin")
+    } catch (e) {
+        console.error("upgradeUser", e.message)
+        res.status(400).send(err)
+    }
+}
+
 export async function deleteUnusedUsers(req, res) {
     try {
         await userService.deleteUnusedUsers();
@@ -31,4 +50,7 @@ export async function deleteUnusedUsers(req, res) {
         res.status(400).send("deleteUnusedUsers",e.message)
     }
 }
+
+    
+
 

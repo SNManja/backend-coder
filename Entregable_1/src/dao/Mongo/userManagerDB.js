@@ -16,6 +16,14 @@ class userManager {
             console.error("UserManager FindUserByMail, " + e.message)
         }
     }
+    async findUserByid(id){
+        try{
+            const user = await userModel.findOne({ _id: id });
+            return user;
+        } catch (e) {
+            console.error("UserManager FindUserById, " + e.message)
+        }
+    }
 
     async getAllUsers(searchParams = null) {
         try{
@@ -28,7 +36,7 @@ class userManager {
 
             return users
         } catch(e){
-            Logger.error("UserManager getAllUsers" + e.message);
+            console.error("UserManager getAllUsers" + e.message);
         }
     }
 
@@ -36,21 +44,28 @@ class userManager {
         try{
             await userModel.updateOne({ _id: user._id }, { $set: user })
         } catch(e){
-            Logger.error("UserManager updateUsers " + e.message);
+            console.error("UserManager updateUsers " + e.message);
         }
     }
 
-    async changeUserRole(user, role){
+    async changeUserRole(uid, role){
         try{
-            
             if(role == "admin" || role == "normal" || role == "premium"){ 
-                let users = await userModel.updateOne({ _id: user._id }, { $set: { role: role }})
+                let users = await userModel.updateOne({ _id: uid }, { $set: { role: role }})
             } else {
                 throw new Error("Invalid role")
             }
 
         } catch(e){
-            Logger.error("UserManager changeUserRole " + e.message);
+            console.error("UserManager changeUserRole " + e.message);
+        }
+    }
+
+    async deleteUser(id){
+        try {
+            await userModel.findByIdAndDelete(id)
+        } catch (e) {
+            console.error("UserManager deleteUser " + e.message);
         }
     }
 
