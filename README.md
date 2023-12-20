@@ -1,4 +1,4 @@
-#Coder-commerce
+# Coder-commerce
 
 Entrega final del curso de desarrollo backend
 
@@ -6,7 +6,7 @@ E-commerce simple con autentificación, sockets, mailing y múltiples features
 
 Construido con Express.js
 
-##Descripción
+## Descripción
 Coder-commerce es un e-commerce simple construido con Express.js. El proyecto fue desarrollado como entrega final del curso de desarrollo web.
 
 El proyecto cuenta con las siguientes características:
@@ -16,7 +16,7 @@ El proyecto cuenta con las siguientes características:
 * Mailing: Los usuarios pueden solicitar la restauración de su contraseña a través de un correo electrónico.
 * Múltiples features: El proyecto cuenta con otras funcionalidades adicionales, como la gestión de productos y pedidos.
 
-##Instalación
+## Instalación
 Para instalar el proyecto, siga los siguientes pasos:
 
 Instale las dependencias:
@@ -31,7 +31,7 @@ npm start
 
 El servidor se iniciará por defecto en el puerto 8080.
 
-##Uso
+## Uso
 Para usar el proyecto, siga los siguientes pasos:
 
 Abra el navegador y visite la siguiente dirección:
@@ -47,7 +47,7 @@ Dentro de la pestaña de carrito, puede hacer el checkout
 En caso de disponer con privilegios de administrador, ir a la url base /admin, donde va a poder administrar usuarios
 
 
-##**Para la evaluacion**
+## **Para la evaluacion**
 De momento voy a dejar una cuenta con permisos de administrador para que el docente pueda evaluar con libertad. Esta es :
 
 * email: santiagomanjarin111@gmail.com
