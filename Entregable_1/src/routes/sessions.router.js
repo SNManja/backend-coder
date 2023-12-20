@@ -57,7 +57,7 @@ router.delete("/logout", async (req, res) => {
 // No pude hacer que es passport funcionase
 router.post("/restorePassword", /*passport.authenticate("restorePassword"), */ async (req,res) => {
     try{
-        // Aca tengo que pegar 
+        
         req.logger.debug("Email recieved")
         req.logger.debug(req.body.email)
         req.logger.warn("sending mail")

@@ -4,6 +4,7 @@ const socket = io();
 
 let logoutButton = document.getElementById("logout-button");
 let cartButton = document.getElementById("cart-button");
+let homeButton = document.getElementById("home-button");
 
 
 logoutButton.addEventListener("click", (e)=>{
@@ -19,8 +20,12 @@ logoutButton.addEventListener("click", (e)=>{
         }
     })
 })
+
 cartButton.addEventListener("click", (e)=>{
     window.location.replace("/users/cart")
+})
+homeButton.addEventListener("click", (e)=>{
+    window.location.replace("/")
 })
 
 

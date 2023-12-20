@@ -15,6 +15,12 @@
     top: 40px;
 }
 
+#home-button {
+    position: absolute;
+    left:  130px;
+    top: 40px;
+}
+
 h1 {
     text-align: center;
 }

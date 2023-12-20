@@ -5,9 +5,8 @@ class ticketManager {
 
     async createTicket(purchaser, cartID){
         try{
-            console.log(purchaser)
+            
             let total = 0;
-            console.log("usuario", cartID)
             let cart = await getUserCart(cartID);
             
             cart.list.forEach((prod) =>{
@@ -19,7 +18,7 @@ class ticketManager {
             })
             
             let ticket = {
-                code: "", // Como autogenero?
+                code: "", 
                 purchaser: purchaser,
                 amount: total,
                 
@@ -27,7 +26,15 @@ class ticketManager {
             
             return await ticketModel.create(ticket);
         } catch (err) {
-            console.error("error creating ticket", err)
+            console.error("error creating ticket", err.message)
+        }
+    }
+
+    getTicket(tid){
+        try{
+            return ticketModel.findById(tid);
+        } catch (err) {
+            console.error("Error finding ticket", err.message)
         }
     }
 }

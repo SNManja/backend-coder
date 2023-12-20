@@ -4,6 +4,10 @@ document.getElementById("home-button").addEventListener("click", (e)=>{
     window.location.replace("/")
 });
 
+document.getElementById("mock-button").addEventListener("click", (e)=>{
+  window.location.replace("/mock")
+});
+
 document.getElementById("del-unused-button").addEventListener("click", (e)=>{
     fetch("/api/admin/deleteUnusedUsers", {
       method: "DELETE",
@@ -44,7 +48,7 @@ async function getUsers() {
     return users;
 }
 
-function loadDOM(users){
+async function loadDOM(users){
     console.log("LoadDOM", users)
     for (const user of users) {
         let userDiv = document.createElement("div");
@@ -74,6 +78,9 @@ function loadDOM(users){
         delButton.textContent = "X";
         upgradeButton.textContent = "Upgrade";
 
+        delButton.addEventListener("click", deleteUser)
+        upgradeButton.addEventListener("click", upgradeUser)
+
         userDiv.appendChild(userID);
         userDiv.appendChild(firstName);
         userDiv.appendChild(lastName);
@@ -85,5 +92,42 @@ function loadDOM(users){
         usersDiv.appendChild(userDiv);
     }
 }
+
+async function deleteUser(e){
+  const userId = e.target.closest(".user-div").querySelector(".user-id").textContent;
+  fetch(`/api/admin/deleteUser/${userId}`,{
+      method: "DELETE",
+      headers:{ 
+          "Content-type": "application/json",
+      }
+  }).then(result=>{
+      if(result.status == 200){
+          location.reload()
+      }
+  }).catch(error=>{
+    console.error(error)
+  })
+  
+}
+
+
+async function upgradeUser(e){
+  const userId = e.target.closest(".user-div").querySelector(".user-id").textContent;
+  fetch(`/api/admin/upgradeUser/${userId}`,{
+      method: "POST",
+      headers:{ 
+          "Content-type": "application/json",
+      }
+  }).then(result=>{
+    if(result.status == 200){
+        location.reload()
+    }
+  }).catch(error=>{
+    console.error(error)
+  })
+
+}
+
+
 
 

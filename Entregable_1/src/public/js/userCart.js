@@ -1,5 +1,6 @@
 //document.querySelectorAll(".delButton").addEventListener("click", delProd)
 const cart_ID = document.getElementById("cart-id").textContent
+const user_ID = document.getElementById("user-id").textContent
 
 let logoutButton = document.getElementById("logout-button");
 let productsButton = document.getElementById("products-button");
@@ -22,8 +23,31 @@ productsButton.addEventListener("click", (e)=>{
     window.location.replace("/products")
 })
 
-checkoutButton.addEventListener("click", (e)=>{
-    window.location.replace("/users/cart/checkout")
+checkoutButton.addEventListener("click",(e)=>{
+    fetch(`/users/cart/ticket/create/${user_ID}/${cart_ID}`,{
+        method: "POST",
+        headers:{ 
+            "Content-type": "application/json",
+        }
+    }).then(result=>{
+        if(result.status == 200){
+            return result.json();
+        } else {
+            throw new Error("POST request failed")
+        }
+        
+    }).then(resultJSON =>{
+        const ticket_ID = resultJSON._id;
+        
+        if(ticket_ID){
+            window.location.replace(`/users/cart/checkout/${ticket_ID}`)
+        } else {
+            throw new Error("Couldn't find ticket ID")
+        }
+    }).catch(error =>{
+        console.error(error.message)
+    })
+    
 })
 
 function getIds() {

@@ -1,0 +1,25 @@
+*{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    color: white;
+    background-color: #222222;
+}
+
+body {
+    color: rgb(222,222,222);
+   
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+
+button {
+    background-color: #ffffff;
+    color: #222222;
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    border-color: transparent transparent;
+}

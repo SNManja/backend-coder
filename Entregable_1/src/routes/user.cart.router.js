@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkoutTicket } from "../controllers/ticket.controller.js";
+import { createTicket, findTicket } from "../controllers/ticket.controller.js";
 import { authToken, getUserCart } from "../utils.js";
 const router = Router()
 
@@ -36,17 +36,13 @@ router.post("/add/:pid", authToken, async (req, res) =>{
     }
 })
 
-router.get("/checkout", authToken, checkoutTicket ,async (req, res) => {
-    let checkout =  req.ticket
-    
-    let user = req.user
-    
-    console.log(`Checkout${checkout}`)
+router.post("/ticket/create/:uid/:cid", createTicket)
 
-    res.render("checkout", { // Carrito esta dentro de req.user, el checkout hay q calcularlo
-        checkout: checkout
-    })
-    
+router.get("/ticket/find/:tid", findTicket)
+
+router.get("/checkout/:tid", (req,res) => {
+
+    res.render("checkout")
 })
 
 
